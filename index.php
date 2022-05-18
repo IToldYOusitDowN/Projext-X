@@ -1,16 +1,11 @@
-<?php 
-	
+<?php 	
 	//Načte potřebné classy
 	spl_autoload_register(function ( $class ) {
 		require_once dirname(__FILE__) . '/class/' . str_replace("_", "/", $class) . '.php';
 	});
-
 	//vytvoří instanci pro class base
 	$web = new base();
-	
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -35,7 +30,6 @@
 					$result_array = $web->category_Select();
 					//vypise data z array a priradi správné hodnoty(base.php)
 					$web->category_Print($result_array);
-
 				?>
 			<div>
 		</div>

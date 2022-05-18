@@ -1,5 +1,4 @@
 <?php 
-
 /**
  * 
  */
@@ -14,10 +13,8 @@ class base
 		require dirname(__FILE__) . '/../config/conf.php';
         $this->conf = $config;
         unset($config);
-
         $this->conn = $this->dbConect();
 	}
-
 
 	public function dbConect() {
 	    //create connection
@@ -35,13 +32,11 @@ class base
 	}
 
 	public function category_Select() {
-		$web = new base();
-		$conn = $web->dbConect();
+		$this->conn = $this->dbConect();
 		$result_array = array();
 
 		$sql = "SELECT * FROM Category";
-
-		$sql_prep = $conn->query($sql);
+		$sql_prep = $this->conn->query($sql);
 		while ($data = $sql_prep->fetch_assoc()) {
 			$result_array[] = $data;
 		}
@@ -64,8 +59,17 @@ class base
 		echo '</ul>';
 	}
 
+	public function notes_Select() {
+		$this->conn = $this->dbConect();
+		$result_array = array();
+
+		$sql = "SELECT * FROM Notes ORDER BY ID DESC";
+
+		$sql_prep = $this->conn->query($sql);
+		while ($data = $sql_prep->fetch_assoc()) {
+			$result_array[] = $data;
+		}
+		return $result_array;
+	}
 }
-
-
-
 ?>
