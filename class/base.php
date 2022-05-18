@@ -49,11 +49,19 @@ class base
 	}
 
 	public function category_Print($data) {
+		echo '<ul class="nav tabs">';
 		foreach ($data as $key => $value) {
-			echo '<div class="col-3">';
-			echo '<div style="background-color:'.$value["Color"].'"><div class="text-center">'.$value["Icon"].'<a href="notes.php?'.$value["Name"].'">'.$value["Name"].'</a></div></div>';
+			if (isset($_GET[$value["Name"]])) {
+				echo '<div class="col-2 mr-2 border border-dark" style="background-color:'.$value["Color"].'">';
+			} else {
+				echo '<div class="col-2 mr-2" style="background-color:'.$value["Color"].'">';
+			}
+			echo '<li class="nav-item">';
+			echo '<div class="text-center">'.$value["Icon"].'<a class="nav-link" href="index.php?'.$value["Name"].'">'.$value["Name"].'</a></div>';
+			echo '</li>';
 			echo '</div>';
 		}
+		echo '</ul>';
 	}
 
 }

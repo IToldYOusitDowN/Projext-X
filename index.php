@@ -28,8 +28,8 @@
 		<div class="text-center">
 			<h1>Project X</h1>
 		</div>
-		<div class="jumbotron">
-			<div class="row">
+		<div class="jumbotron text-center">
+			<div>
 				<?php
 					//vybere z databáze všechny data o tabulce category a uloží do array
 					$result_array = $web->category_Select();
