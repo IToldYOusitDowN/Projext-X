@@ -1,3 +1,3 @@
 # Projext-X
-# Font Awsome 5
+# Font Awesome 5
 # Bootstrap 5
