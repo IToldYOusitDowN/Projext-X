@@ -47,29 +47,51 @@ class base
 		echo '<ul class="nav tabs">';
 		foreach ($data as $key => $value) {
 			if (isset($_GET[$value["Name"]])) {
-				echo '<div class="col-2 mr-2 border border-dark" style="background-color:'.$value["Color"].'">';
+				echo '<div class=" pt-2 pr-5 pl-5 pb-2 rounded col-md-auto mr-2 border border-secondary" style="background-color:#6c757d">';
 			} else {
-				echo '<div class="col-2 mr-2" style="background-color:'.$value["Color"].'">';
+				echo '<div class=" pt-2 pr-5 pl-5 pb-2 rounded col-md-auto mr-2 border border-secondary style="color:black">';
 			}
 			echo '<li class="nav-item">';
-			echo '<div class="text-center">'.$value["Icon"].'<a class="nav-link" href="index.php?'.$value["Name"].'">'.$value["Name"].'</a></div>';
+			if (isset($_GET[$value["Name"]])) {
+				echo '<div class="text-center">'.$value["Icon"].'<a style="color:white" class="ml-2 text-decoration-none" href="index.php?'.$value["Name"].'">'.$value["Name"].'</a></div>';
+			} else {
+				echo '<div class="text-center">'.$value["Icon"].'<a style="color:black" class="ml-2 text-decoration-none" href="index.php?'.$value["Name"].'">'.$value["Name"].'</a></div>';
+			}
 			echo '</li>';
 			echo '</div>';
 		}
 		echo '</ul>';
 	}
-
+	
 	public function notes_Select() {
 		$this->conn = $this->dbConect();
 		$result_array = array();
 
-		$sql = "SELECT * FROM Notes ORDER BY ID DESC";
+		$sql = "SELECT * FROM Notes";
 
 		$sql_prep = $this->conn->query($sql);
 		while ($data = $sql_prep->fetch_assoc()) {
 			$result_array[] = $data;
 		}
 		return $result_array;
+	}
+
+	public function notes_Print($data) {
+		
+		foreach ($data as $key => $value) {
+			echo "<div class='jumbotron'>";
+			echo "<div class='row'>";
+			echo '<div class="col-12 col-lg-6">';
+			echo '<h3 class="h3">'.$value['Name'].'</h3>';
+			echo '<h6 class="h6">Kategorie: <a href="?'.$value['Notes_Category'].'">'.$value['Notes_Category'].'</a></h6><br>';
+			echo "<p>".$value['Desc']."</p>";
+			echo '</div>';
+			echo '<div class="col-12 col-lg-6">';
+			echo '<img class="img-fluid img-thumbnail" src="'.$value["URL_IMG"].'">';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
 	}
 }
 ?>

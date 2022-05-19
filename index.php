@@ -20,19 +20,28 @@
 </head>
 <body>
 	<div class="container">
-		<div class="text-center">
-			<h1>Project X</h1>
-		</div>
-		<div class="jumbotron text-center">
-			<div>
-				<?php
-					//vybere z databáze všechny data o tabulce category a uloží do array
-					$result_array = $web->category_Select();
-					//vypise data z array a priradi správné hodnoty(base.php)
-					$web->category_Print($result_array);
-				?>
-			<div>
-		</div>
+		<header>
+			<div class="text-center mt-5">
+				<h1 class="h1">Materials</h1>
+			</div>
+			<div class="jumbotron text-center">
+				<div class="row justify-content-md-center">
+					<?php
+						//vybere z databáze všechny data o tabulce category a uloží do array
+						$category_array = $web->category_Select();
+						//vypise data z array a priradi správné hodnoty(base.php)
+						$web->category_Print($category_array);
+					?>
+				<div>
+			</div>
+		</header>
+		<article>
+			<?php 
+				$notes_array = $web->notes_Select();
+				$web->notes_Print($notes_array);
+
+			?>
+		</article>
 	</div>
 </body>
 </html>
