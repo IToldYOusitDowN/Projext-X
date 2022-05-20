@@ -1,4 +1,6 @@
-<?php 	
+<?php
+	
+	session_start();
 	//Načte potřebné classy
 	spl_autoload_register(function ( $class ) {
 		require_once dirname(__FILE__) . '/class/' . str_replace("_", "/", $class) . '.php';
@@ -9,6 +11,12 @@
 	$category_name_array = $web->category_in_array();
 	$notes_array = $web->notes_Select();
 	$category_select_array = $web->notes_Category($category_name_array);
+
+	/*if ($_SESSION['error'] != null) {
+		echo "jfur";	
+	}*/
+	
+
 ?>
 
 <!DOCTYPE html>
@@ -23,14 +31,25 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+	<div class="row">
+		<div class="col-2 ml-auto">
+			<?php
+				$web->isLogin();
+			?>
+			
+		</div>
+	</div>
 	<div class="container">
 		<header>
+			<?php $web->errorAlert(); unset($_SESSION['error']);?>
 			<div class="text-center mt-5">
 				<h1 class="h1">Materials</h1>
 			</div>
+			
 			<div class="mt-5 mb-5 text-center">
 				<div class="row justify-content-md-center">
 					<?php
+					
 						$web->category_Print($category_array);
 					?>
 				<div>
@@ -42,27 +61,23 @@
 			$web->selected_category_Print($notes_array, $category_select_array);
 		?>
 	</article>
-	<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" style="max-width: 60%;">
-	    	<div class="modal-content">
-	     		<div class="modal-header">
-	        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        		<h4 class="modal-title" id="myModalLabel"></h4>
-	      		</div>
-	      		<div class="modal-body">
-	        		<img src="" id="imagepreview" style="max-width: 100%; height: 100%;" >
-	      		</div>
-	      		<div class="modal-footer">
-	        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      		</div>
-	    	</div>
-		</div>
+
+	<div>
+		<?php include 'modal.php' ?>
 	</div>
+
 	<script>		
 		$("#pop").on("click", function() {
    			$('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
    			$('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
 		});
+		
+	    $("#logoutButton").on("click", function() {
+	    	location.href = "logout.php";
+	    })
+
+
+
 	</script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 /**
  * 
  */
+
 class base
 {
 	
@@ -97,6 +98,23 @@ class base
 		return $result_array;
 	}
 
+	public function category_Selection($data) {
+		foreach ($data as $key => $value) {
+			echo '<option value="'.$value['Name'].'">'.$value['Name'].'</option>';
+		}
+	}
+
+	function user_data($name) {
+		$this->conn = $this->dbConect();
+		$result_array = array();
+		$sql = "SELECT * FROM User WHERE Name = '".$name."'";
+		$sql_prep = $this->conn->query($sql);
+		while ($data = $sql_prep->fetch_assoc()) {
+			$result_array[] = $data;
+		}
+		return $result_array;
+	}
+
 	public function notes_Print($data) {
 		$a = 0;
 		foreach ($data as $key => $value) {
@@ -108,7 +126,7 @@ class base
 				echo '<h3 class="mt-3 h3">'.$value['Name'].'</h3>';
 				echo '<h6 style="color:#8c9399" class="h6">Kategorie: <a style="color:#8c9399" href="?category='.$value['Notes_Category'].'">'.$value['Notes_Category'].'</a></h6>';
 				echo '<h6 style="color:#8c9399" class="h6">URL: <a style="color:#8c9399" href="'.$value['URL'].'">'.$value['URL'].'</a></h6><br>';
-				echo "<p>".$value['Desc']."</p>";
+				echo "<p>".$value['Description']."</p>";
 				echo '</div>';
 				echo '<div class="col-12 col-lg-6">';
 				
@@ -145,7 +163,7 @@ class base
 				echo '<h3 class="mt-3 h3">'.$value['Name'].'</h3>';
 				echo '<h6 style="color:#8c9399" class="h6">Kategorie: <a style="color:#8c9399" href="?category='.$value['Notes_Category'].'">'.$value['Notes_Category'].'</a></h6>';
 				echo '<h6 style="color:#8c9399" class="h6">URL: <a style="color:#8c9399" href="'.$value['URL'].'">'.$value['URL'].'</a></h6><br>';
-				echo "<p>".$value['Desc']."</p>";
+				echo "<p>".$value['Description']."</p>";
 				echo '</div>';	
 			}
 			
@@ -198,6 +216,36 @@ class base
         	$youtube_id = $matches[count($matches) - 1];
     	}
     	return 'https://www.youtube.com/embed/' . $youtube_id ;
+	}
+
+	function errorAlert() {
+		if (isset($_SESSION['error'])) {
+			$error = $_SESSION['error'];
+			echo '<div class="mt-3 alert alert-danger text-center" role="alert"><span class="h5">'.$error.'</span></div>';	
+		}
+	}
+
+	function isLogin() {
+		if (isset($_SESSION['logged'])) {
+			$user = $_SESSION['logged'];
+			echo '<div class="dropdown">
+  				<button class="btn mt-2 btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.$user.'</button>
+  				<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    				<button class="dropdown-item" data-toggle="modal" data-target="#insert-modal" type="button">Přidat Nový</button>
+  					<button class="dropdown-item" id="logoutButton" type="button">Odhlásit</button>
+  				</div>
+			</div>';
+		} else {
+			echo '<button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".bd-example-modal-lg">Přihlásit</button>';
+		}
+	}
+
+	function insertData($sql, $name, $category, $description, $url, $img, $ytb) {
+		$this->conn = $this->dbConect();
+		$result_array = array();
+		$sql_prep = $this->conn->prepare($sql);
+		$sql_prep->bind_param('ssssss', $category, $name, $description, $url, $img, $ytb);
+		$sql_prep->execute();
 	}
 }
 ?>
