@@ -41,8 +41,8 @@
 					  	<select class="form-control form-select-lg" aria-label="Default select example" name="category">
 					  		<option value="" selected>Vyberte kategorii</option>
 							<?php
-								$data = $web->category_in_array();
-								$web->category_Selection($data);
+								$data = $db->category_in_array();
+								$print->category_Selection($data);
 							?>
 					  	</select>
 					</div>

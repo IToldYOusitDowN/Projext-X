@@ -6,7 +6,7 @@
 		require_once dirname(__FILE__) . '/class/' . str_replace("_", "/", $class) . '.php';
 	});
 
-	$db = new base();
+	$db = new MySQL();
 
 	$error = null;
 	if (isset($_POST)) {

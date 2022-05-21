@@ -4,7 +4,7 @@
 	spl_autoload_register(function ( $class ) {
 		require_once dirname(__FILE__) . '/class/' . str_replace("_", "/", $class) . '.php';
 	});
-	$db = new base();
+	$db = new MySQL();
 	$error = null;
 	$name = null;
 	if ($_POST['name'] != "" AND $_POST['heslo'] != "") {

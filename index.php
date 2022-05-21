@@ -7,14 +7,12 @@
 	});
 	//vytvoří instanci pro class base
 	$web = new base();
-	$category_array = $web->category_Select();
-	$category_name_array = $web->category_in_array();
-	$notes_array = $web->notes_Select();
-	$category_select_array = $web->notes_Category($category_name_array);
-
-	/*if ($_SESSION['error'] != null) {
-		echo "jfur";	
-	}*/
+	$db = new MySQL();
+	$print = new printing();
+	$category_array = $db->category_Select();
+	$category_name_array = $db->category_in_array();
+	$notes_array = $db->notes_Select();
+	$category_select_array = $db->notes_Category($category_name_array);
 	
 
 ?>
@@ -34,14 +32,14 @@
 	<div class="row">
 		<div class="col-2 ml-auto">
 			<?php
-				$web->isLogin();
+				$print->isLogin();
 			?>
 			
 		</div>
 	</div>
 	<div class="container">
 		<header>
-			<?php $web->errorAlert(); unset($_SESSION['error']);?>
+			<?php $print->errorAlert();?>
 			<div class="text-center mt-5">
 				<h1 class="h1">Materials</h1>
 			</div>
@@ -50,7 +48,7 @@
 				<div class="row justify-content-md-center">
 					<?php
 					
-						$web->category_Print($category_array);
+						$print->category_Print($category_array);
 					?>
 				<div>
 			</div>
@@ -58,7 +56,7 @@
 	</div>
 	<article>
 		<?php 
-			$web->selected_category_Print($notes_array, $category_select_array);
+			$print->selected_category_Print($notes_array, $category_select_array);
 		?>
 	</article>
 
@@ -75,9 +73,6 @@
 	    $("#logoutButton").on("click", function() {
 	    	location.href = "logout.php";
 	    })
-
-
-
 	</script>
 </body>
 </html>
