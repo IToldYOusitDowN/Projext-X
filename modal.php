@@ -18,7 +18,8 @@
 		      		</div>
 		    	</div>
 		    	<div class="row justify-content-md-center mb-5">
-		    		<div class="col-6">
+		    		<div class="col-4"></div>
+		    		<div class="col-8 ml-auto text-center">
 		    			<button class="btn btn-primary mt-3" type="submit">Přihlásit</button>	
 		    		</div>
 		    	</div>							
@@ -72,11 +73,12 @@
 						<textarea class="form-control" name="Desc" placeholder="Popis" rows="3"></textarea>
 					</div>
 				</div>
-		    	<div class="row justify-content-md-center mb-5 mt-3">
-		    		<div class="col-6">
-		    			<button class="btn btn-primary mt-3" type="submit">Přidat</button>	
+		    	<div class="row justify-content-md-center mb-5">
+		    		<div class="col-4"></div>
+		    		<div class="col-8 ml-auto text-center">
+		    			<button class="btn btn-primary mt-3" type="submit">Přidat Nový</button>	
 		    		</div>
-		    	</div>							
+		    	</div>
 			</form>
 		</div>
 	</div>

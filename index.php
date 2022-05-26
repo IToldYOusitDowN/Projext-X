@@ -39,7 +39,10 @@
 	</div>
 	<div class="container">
 		<header>
-			<?php $print->errorAlert();?>
+			<?php 
+				$print->errorAlert();
+				$print->successAlert();
+			?>
 			<div class="text-center mt-5">
 				<h1 class="h1">Materials</h1>
 			</div>

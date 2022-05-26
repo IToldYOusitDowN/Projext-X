@@ -96,13 +96,43 @@
 			}
 		}
 
-		function insertData($sql, $name, $category, $description, $url, $img, $ytb) {
+		public function delete_note($sql, $ID) {
 			$this->conn = $this->dbConect();
 			$result_array = array();
 			$sql_prep = $this->conn->prepare($sql);
-			$sql_prep->bind_param('ssssss', $category, $name, $description, $url, $img, $ytb);
+			$sql_prep->bind_param('s', $ID);
 			$sql_prep->execute();
 		}
+
+		public function insertData($sql, $name, $category, $description, $url, $img, $ytb) {
+			$this->conn = $this->dbConect();
+			$result_array = array();
+			$sql_prep = $this->conn->prepare($sql);
+			$sql_prep->bind_param('ssssss', $name, $category, $description, $url, $img, $ytb);
+			$sql_prep->execute();
+		}
+
+		public function updateData($sql, $name, $category, $description, $url, $img, $ytb, $id) {
+			$this->conn = $this->dbConect();
+			$result_array = array();
+			$sql_prep = $this->conn->prepare($sql);
+			$sql_prep->bind_param('ssssssi', $name, $category, $description, $url, $img, $ytb, $id);
+			$sql_prep->execute();
+		}
+
+		public function select_edit($id) {
+			$this->conn = $this->dbConect();
+			$result_array = array();
+
+			$sql = "SELECT * FROM Notes WHERE ID = '".$id."'";
+
+			$sql_prep = $this->conn->query($sql);
+			while ($data = $sql_prep->fetch_assoc()) {
+				$result_array[] = $data;
+			}
+			return $result_array;
+		}
 	}
+
 
 ?>

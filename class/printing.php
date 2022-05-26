@@ -42,6 +42,7 @@
 				echo "<div class='row'>";
 				if (($a % 2) == 0) {
 					echo '<div class="col-12 col-lg-6" style="word-wrap: break-word;">';
+					$this->edits_buttons($value['ID']);
 					echo '<h3 class="mt-3 h3">'.$value['Name'].'</h3>';
 					echo '<h6 style="color:#8c9399" class="h6">Kategorie: <a style="color:#8c9399" href="?category='.$value['Notes_Category'].'">'.$value['Notes_Category'].'</a></h6>';
 					echo '<h6 style="color:#8c9399" class="h6">URL: <a style="color:#8c9399" href="'.$value['URL'].'">'.$value['URL'].'</a></h6><br>';
@@ -61,7 +62,6 @@
 					} else {
 						echo '<img id="imageresource" class="img-fluid" src="https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg">';
 					}
-					
 					echo '</div>';
 				} else {
 					echo '<div class="col-12 col-lg-6">';
@@ -78,18 +78,25 @@
 						echo '<img id="imageresource" class="img-fluid" src="https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg">';
 					}
 					echo '</div>';
-					echo '<div class="col-12 col-lg-6" style="word-wrap: break-word;>';
+					echo '<div class="col-12 col-lg-6">';
+					$this->edits_buttons($value['ID']);
 					echo '<h3 class="mt-3 h3">'.$value['Name'].'</h3>';
 					echo '<h6 style="color:#8c9399" class="h6">Kategorie: <a style="color:#8c9399" href="?category='.$value['Notes_Category'].'">'.$value['Notes_Category'].'</a></h6>';
 					echo '<h6 style="color:#8c9399" class="h6">URL: <a style="color:#8c9399" href="'.$value['URL'].'">'.$value['URL'].'</a></h6><br>';
 					echo "<p>".$value['Description']."</p>";
-					echo '</div>';	
+					echo '</div>';
 				}
-				
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
 				$a++;
+			}
+		}
+
+		function edits_buttons($id) {
+			if(isset($_SESSION['logged'])) {
+				echo '<div style="position: absolute; top: 0px; right: 0px"><a href="delete_form.php?delete='.$id.'" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a></div>';
+				echo '<div style="position: absolute; top: 35px; right: 0px;"><a href="update_form.php?edit='.$id.'" class="btn btn-success btn-sm rounded-0" type="button" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a></div>';
 			}
 		}
 
@@ -125,6 +132,13 @@
 				$error = $_SESSION['error'];
 				echo '<div class="mt-3 alert alert-danger text-center" role="alert"><span class="h5">'.$error.'</span></div>';
 				unset($_SESSION['error']);	
+			}
+		}
+		function successAlert() {
+			if (isset($_SESSION['successful'])) {
+				$error = $_SESSION['successful'];
+				echo '<div class="mt-3 alert alert-success text-center" role="alert"><span class="h5">'.$error.'</span></div>';
+				unset($_SESSION['successful']);	
 			}
 		}
 
