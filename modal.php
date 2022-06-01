@@ -31,7 +31,7 @@
 <div id="insert-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form class="mt-5" method="post" action="action_insert.php">
+			<form class="mt-5" method="post" action="action_insert.php" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-12 text-center">
 						<h3>Přidat Nový</h3>
@@ -66,6 +66,11 @@
 				<div class="row justify-content-md-center mt-3">
 					<div class="col-6">
 						<input type="text" name="URL_YTB" class="form-control" placeholder="URL_YTB">
+					</div>
+				</div>
+				<div class="row justify-content-md-center mt-3">
+					<div class="col-6">
+						<input type="file" name="uploadfile">
 					</div>
 				</div>
 				<div class="row justify-content-md-center mt-3">

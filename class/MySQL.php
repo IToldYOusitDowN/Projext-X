@@ -112,6 +112,14 @@
 			$sql_prep->execute();
 		}
 
+		public function insertDataWithFile($sql, $name, $category, $description, $url, $img, $ytb, $file) {
+			$this->conn = $this->dbConect();
+			$result_array = array();
+			$sql_prep = $this->conn->prepare($sql);
+			$sql_prep->bind_param('sssssss', $name, $category, $description, $url, $img, $ytb, $file);
+			$sql_prep->execute();
+		}
+
 		public function updateData($sql, $name, $category, $description, $url, $img, $ytb, $id) {
 			$this->conn = $this->dbConect();
 			$result_array = array();

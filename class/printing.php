@@ -52,13 +52,15 @@
 					
 					if (!empty($value['URL_IMG'])) {
 						echo '<div href="#" id="pop">';
-						echo '<img id="imageresource" class="img-fluid" src="'.$value["URL_IMG"].'">';
+						echo '<img id="imageresource" class="img-fluid" src="uploads/'.$value["URL_IMG"].'">';
 						echo '</div>';
 					} elseif (!empty($value['URL_YTB'])) {
 						$url = $this->getYoutubeEmbedUrl($value['URL_YTB']);
 						echo '<div class="embed-responsive embed-responsive-16by9">';
 						echo '<iframe class="embed-responsive-item" src="'.$url.'" allowfullscreen></iframe>';
 						echo '</div>';
+					} elseif (!empty($value['IMG_FILE'])) {
+						echo '<img id="imageresource" class="img-fluid" src="'.$value['IMG_FILE'].'">';
 					} else {
 						echo '<img id="imageresource" class="img-fluid" src="https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg">';
 					}
@@ -74,11 +76,13 @@
 						echo '<div class="embed-responsive embed-responsive-16by9">';
 						echo '<iframe class="embed-responsive-item" src="'.$url.'" allowfullscreen></iframe>';
 						echo '</div>';
+					} elseif (!empty($value['IMG_FILE'])) {
+						echo '<img id="imageresource" class="img-fluid" src="uploads/'.$value['IMG_FILE'].'">';
 					} else {
 						echo '<img id="imageresource" class="img-fluid" src="https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg">';
 					}
 					echo '</div>';
-					echo '<div class="col-12 col-lg-6">';
+					echo '<div class="col-12 col-lg-6 style="word-wrap: break-word;">';
 					$this->edits_buttons($value['ID']);
 					echo '<h3 class="mt-3 h3">'.$value['Name'].'</h3>';
 					echo '<h6 style="color:#8c9399" class="h6">Kategorie: <a style="color:#8c9399" href="?category='.$value['Notes_Category'].'">'.$value['Notes_Category'].'</a></h6>';
