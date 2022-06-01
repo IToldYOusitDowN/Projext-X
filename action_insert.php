@@ -60,17 +60,17 @@
 		            $imgContent = addslashes(file_get_contents($image));
 		            $imgString = 'data:image/'.$fileType.';base64,'.base64_encode($imgContent);*/
 
-					$sql = "INSERT INTO Notes (Notes_Category, Name, Description, URL, URL_IMG, URL_YTB, IMG_FILE) Values (?, ?, ?, ?, ?, ?, ?)";
+					$sql = "INSERT INTO Notes (Name, Notes_Category, Description, URL, URL_IMG, URL_YTB, IMG_FILE) Values (?, ?, ?, ?, ?, ?, ?)";
 					$db->insertDataWithFile($sql, $name, $category, $_POST['Desc'], $_POST['URL'], $_POST['URL_IMG'], $_POST['URL_YTB'], $filename);
-					header('location: index.php');
+					//header('location: index.php');
         		} else {
         			$_SESSION['error'] = "Omlouváme se, ale nastala chyba při nahrávání vaší fotky";
-        			header('location: index.php');
+        			//header('location: index.php');
         		}
 	            
 			} else {
 				$_SESSION['error'] = "Nepodporovatelný formát obrázku";
-				header('location: index.php');
+				//header('location: index.php');
 			}
 		} else {
 			$sql = "INSERT INTO Notes (Notes_Category, Name, Description, URL, URL_IMG, URL_YTB) Values (?, ?, ?, ?, ?, ?)";
@@ -80,7 +80,7 @@
 
 	} else {
 		$_SESSION['error'] = $error;
-		header('location: index.php');
+		//header('location: index.php');
 	}
 
 ?>

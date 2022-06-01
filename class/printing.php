@@ -60,7 +60,7 @@
 						echo '<iframe class="embed-responsive-item" src="'.$url.'" allowfullscreen></iframe>';
 						echo '</div>';
 					} elseif (!empty($value['IMG_FILE'])) {
-						echo '<img id="imageresource" class="img-fluid" src="'.$value['IMG_FILE'].'">';
+						echo '<img id="imageresource" class="img-fluid" src="uploads/'.$value['IMG_FILE'].'">';
 					} else {
 						echo '<img id="imageresource" class="img-fluid" src="https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg">';
 					}
