@@ -1,6 +1,7 @@
 # Projext-X
 # Libraries
 Bootstrap 4:
+Knihovna pro CSS
 https://getbootstrap.com/docs/4.6/getting-started/introduction/
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
@@ -12,7 +13,9 @@ https://getbootstrap.com/docs/4.6/getting-started/introduction/
 
 # Fonts
 Font Awesome:
+Ikony
 https://fontawesome.com/
 <script src="https://kit.fontawesome.com/ff4be11dfb.js" crossorigin="anonymous"></script>
 # Design:
+Návrh designu
 https://www.figma.com/file/2lihqosbnVZmdt4PMQge2Z/Untitled?node-id=0%3A1
