@@ -1,6 +1,7 @@
 # Projext-X
 # Libraries
 Bootstrap 4:
+https://getbootstrap.com/docs/4.6/getting-started/introduction/
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -11,6 +12,7 @@ Bootstrap 4:
 
 # Fonts
 Font Awesome:
+https://fontawesome.com/
 <script src="https://kit.fontawesome.com/ff4be11dfb.js" crossorigin="anonymous"></script>
 # Design:
 https://www.figma.com/file/2lihqosbnVZmdt4PMQge2Z/Untitled?node-id=0%3A1
