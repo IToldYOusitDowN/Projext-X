@@ -1,0 +1,84 @@
+<?php 
+/**
+ * 
+ */
+
+class notes
+{
+	$base = new base();
+
+    function uploadFile(Array $files) : String {
+        if (!isset($files) AND empty($files["name"])) {
+            return "";
+        }
+
+        $targetDir = $base->getConf("uploadDir");
+        $filename = basename($files['name']);
+        $targetFilePath = $targetDir . $filename;
+
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        $allowTypes = $base->getConf("allowTypes");
+
+        if(!in_array($fileType, $allowTypes)){
+            $_SESSION['error'] = "Nepodporovatelný formát obrázku";
+            return "";
+        }
+
+        if (move_uploaded_file($files['tmp_name'], $targetFilePath)) {
+            /*$image = $files['tmp_name']; 
+            $imgContent = addslashes(file_get_contents($image));
+            $imgString = 'data:image/'.$fileType.';base64,'.base64_encode($imgContent);*/
+            return $filename
+            //header('location: index.php');
+        } else {
+            $_SESSION['error'] = "Omlouváme se, ale nastala chyba při nahrávání vaší fotky";
+            //header('location: index.php');
+        }
+        return "";
+
+    }
+
+    function validateNoteImputs(Array $post) : bool {
+
+    	$error = null;
+
+        if (empty($post['Name'])) {
+			$error .= "Nebyl vyplňen název<br>";
+		}
+
+		if (empty($post['category'])) {
+			$error .= "Nebyla zvolena kategorie<br>";
+		}
+		
+		/*if ($post['Desc'] != "") {
+			$description = $post['Desc'];
+		} else {
+			$description = "";
+		}
+		if ($post['URL'] != "") {
+			$url = $post['URL'];
+		} else {
+			$url = "";
+		}
+		if ($post['URL_IMG'] != "") {
+			$url_img = $post['URL_IMG'];
+		} else {
+			$url_img = "";
+		}
+		if ($post['URL_YTB'] != "") {
+			$url_ytb = $post['URL_YTB'];
+		} else {
+			$url_ytb = "";
+		}*/
+
+        if (is_string($error)) {
+            session_start();
+            $_SESSION['error'] = $error;
+            return false
+        } 
+
+        return true
+    }
+
+}
+?>

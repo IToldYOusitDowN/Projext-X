@@ -5,6 +5,15 @@
 
 class base
 {
+	function getConfig() : Array{
+		require dirname(__FILE__) . '/../config/conf.php';
+		return $config;
+	}
+
+	function getConfig(String $parametr) : String {
+		$allConf = $this->getConfig();
+		return $allConf[$parametr];
+	}
 
 	function getYoutubeEmbedUrl($url) {
     	$shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
